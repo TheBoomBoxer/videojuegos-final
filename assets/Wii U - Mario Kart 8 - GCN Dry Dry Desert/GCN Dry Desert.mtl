@@ -1,0 +1,407 @@
+# Blender MTL File: 'None'
+# Material Count: 37
+
+newmtl CausticsArea8
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+
+newmtl ddd_Brick
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_Brick_Alb.png
+# map_d gcddd_Brick_Alb.png
+
+newmtl ddd_Brick02
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_Brick02_Alb.png
+# map_d gcddd_Brick02_Alb.png
+
+newmtl ddd_Brick_break
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_Brick_break_Alb.png
+# map_d gcddd_Brick_break_Alb.png
+
+newmtl ddd_Brick_relief
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_Brick_relief_Alb.png
+# map_d gcddd_Brick_relief_Alb.png
+
+newmtl ddd_Brick_view
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_Brick_view_Alb.png
+# map_d gcddd_Brick_view_Alb.png
+
+newmtl ddd_Brick_view_break
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_Brick_view_break_Alb.png
+# map_d gcddd_Brick_view_break_Alb.png
+
+newmtl ddd_Cactus
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_Cactus_Alb.png
+# map_d gcddd_Cactus_Alb.png
+
+newmtl ddd_Cactus02
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_Cactus02_Alb.png
+# map_d gcddd_Cactus02_Alb.png
+
+newmtl ddd_DIRT_a
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_road02_Alb.png
+# map_d gcddd_road02_Alb.png
+
+newmtl ddd_Flag
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_Flag_Alb.png
+# map_d gcddd_Flag_Alb.png
+
+newmtl ddd_NS_board00
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_ry_board00_Alb.png
+# map_d gcddd_ry_board00_Alb.png
+
+newmtl ddd_RESQ_a
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_road04_Alb.png
+# map_d gcddd_road04_Alb.png
+
+newmtl ddd_RESQ_a_Belt
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_road05_Alb.png
+# map_d gcddd_road05_Alb.png
+
+newmtl ddd_RESQ_a_out
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_road04_Alb.png
+# map_d gcddd_road04_Alb.png
+
+newmtl ddd_RESQ_mask_a
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_road04_Alb.png
+# map_d gcddd_road04_Alb.png
+
+newmtl ddd_arijigoku
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_arijigoku_Alb.png
+# map_d gcddd_arijigoku_Alb.png
+
+newmtl ddd_arijigoku_side
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_arijigoku_side_Alb.png
+# map_d gcddd_arijigoku_side_Alb.png
+
+newmtl ddd_arrow01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_arrow01_Alb.png
+# map_d gcddd_arrow01_Alb.png
+
+newmtl ddd_green1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_green_Alb.png
+# map_d gcddd_green_Alb.png
+
+newmtl ddd_greenW
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_green_Alb.png
+# map_d gcddd_green_Alb.png
+
+newmtl ddd_oasisPlantA
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_oasisPlantA_Alb.png
+# map_d gcddd_oasisPlantA_Alb.png
+
+newmtl ddd_oasis_Bottom00
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_oasis_bottom_Alb.png
+# map_d gcddd_oasis_bottom_Alb.png
+
+newmtl ddd_oasis_Hole
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_oasis_Hole_Alb.png
+# map_d gcddd_oasis_Hole_Alb.png
+
+newmtl ddd_oasis_criff
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_oasis_criff_Alb.png
+# map_d gcddd_oasis_criff_Alb.png
+
+newmtl ddd_oasis_hole_mlt
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_oasis_Hole_Alb.png
+# map_d gcddd_oasis_Hole_Alb.png
+
+newmtl ddd_oasis_wall_mlt
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_oasis_criff_Alb.png
+# map_d gcddd_oasis_criff_Alb.png
+
+newmtl ddd_road01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_road01_Alb.png
+# map_d gcddd_road01_Alb.png
+
+newmtl ddd_rock
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_rock_Alb.png
+# map_d gcddd_rock_Alb.png
+
+newmtl ef_waterB
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd ef_water01_Nrm.png
+map_d ef_water01_Nrm.png
+
+newmtl ef_waterF
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd ef_water01_Nrm.png
+# map_d ef_water01_Nrm.png
+
+newmtl gcddd_NS_Sboard00
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_ry_Sboard00_Alb.png
+# map_d gcddd_ry_Sboard00_Alb.png
+
+newmtl gcddd_NS_StartGrid00
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_ry_StartGrid00_Alb.png
+# map_d gcddd_ry_StartGrid00_Alb.png
+
+newmtl gcddd_NS_StartGrid01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_ry_StartGrid01_Alb.png
+# map_d gcddd_ry_StartGrid01_Alb.png
+
+newmtl gcddd_NS_StartLine00
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd gcddd_ry_StartLine00_Alb.png
+# map_d gcddd_ry_StartLine00_Alb.png
+
+newmtl karakara_sekizou01_Blinn
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd de_zou_Alb.png
+# map_d de_zou_Alb.png
+
+newmtl karakara_sphinx_karakara_sphinx_Blinn
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 1
+map_Kd de_sphinx_Alb.png
+# map_d de_sphinx_Alb.png
