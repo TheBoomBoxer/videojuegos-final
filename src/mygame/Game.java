@@ -5,9 +5,11 @@ import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.light.DirectionalLight;
 import com.jme3.light.Light;
+import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.Geometry;
+import com.jme3.scene.Spatial;
 
 /**
  * This is the Main Class of your Game. You should only do initialization here.
@@ -31,10 +33,11 @@ public class Game extends SimpleApplication {
         physical_states = new BulletAppState();
         stateManager.attach(physical_states);
         createTrack();
+        createKart();
     }
     
     private void createTrack() {
-        Geometry track = (Geometry) assetManager.loadModel("Models/track.j3o");
+        Spatial track = assetManager.loadModel("Wii U - Mario Kart 8 - GBA Mario Circuit/GBA Mario Circuit.obj");
         Light light = new DirectionalLight(Vector3f.UNIT_Y.mult(-1));
         track.addLight(light);
         
@@ -45,6 +48,15 @@ public class Game extends SimpleApplication {
         rootNode.attachChild(track);
     }
 
+    private void createKart() {
+        Spatial geom_standard_kart =  assetManager.loadModel("Wii U - Mario Kart 8 - Standard Kart/Standard Kart.obj");
+        Light light = new DirectionalLight(Vector3f.UNIT_Y.mult(-1));
+        geom_standard_kart.addLight(light);
+        geom_standard_kart.setLocalTranslation(new Vector3f(0, 10, 0));
+        cam.setLocation(geom_standard_kart.getWorldTranslation().add(new Vector3f(0,2,0)));
+        cam.lookAt(geom_standard_kart.getWorldTranslation(), Vector3f.UNIT_Y);
+        rootNode.attachChild(geom_standard_kart);
+    }
     @Override
     public void simpleUpdate(float tpf) {
         //TODO: add update code
