@@ -5,12 +5,11 @@ import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.light.DirectionalLight;
 import com.jme3.light.Light;
-import com.jme3.material.Material;
 import com.jme3.math.Matrix3f;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
-import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
+import com.jme3.util.SkyFactory;
 
 /**
  * This is the Main Class of your Game. You should only do initialization here.
@@ -35,6 +34,7 @@ public class Game extends SimpleApplication {
         stateManager.attach(physical_states);
         createTrack();
         createKart();
+        rootNode.attachChild(SkyFactory.createSky(getAssetManager(), "Textures/Sky/Bright/BrightSky.dds", SkyFactory.EnvMapType.CubeMap));
     }
     
     private void createTrack() {
