@@ -323,8 +323,8 @@ Ns 96.078431
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
-Ni -1.000000
-d 1.000000
+Ni 1.000000
+d 0.000000
 illum 1
 map_Kd ef_water01_Nrm.png
 map_d ef_water01_Nrm.png
@@ -334,11 +334,11 @@ Ns 96.078431
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
-Ni -1.000000
-d 1.000000
+Ni 1.000000
+d 0.000000
 illum 1
 map_Kd ef_water01_Nrm.png
-# map_d ef_water01_Nrm.png
+map_d ef_water01_Nrm.png
 
 newmtl gcddd_NS_Sboard00
 Ns 96.078431
