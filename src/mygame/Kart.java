@@ -33,14 +33,18 @@ public class Kart {
 
         geom_kart = game.getAssetManager().loadModel(kart);
         geom_tires = game.getAssetManager().loadModel(tire);
+        Spatial geom_mario = game.getAssetManager().loadModel("Wii U - Mario Kart 8 - Mario/mario.obj");
+        
 
         geom_kart.addLight(game.getSpotLight());
         geom_tires.addLight(game.getSpotLight());
+        geom_mario.addLight(game.getSpotLight());
 
         node_kart = new Node();
 
         node_kart.attachChild(geom_kart);
         node_kart.attachChild(geom_tires);
+        node_kart.attachChild(geom_mario);
 
         node_kart.setLocalTranslation(new Vector3f(-65, 5, 10));
 
@@ -49,7 +53,7 @@ public class Kart {
         node_kart.setLocalRotation(init_rot);
         node_kart.setLocalScale(.5f);
         
-        physics_kart = new RigidBodyControl(3f);
+        physics_kart = new RigidBodyControl(2f);
         node_kart.addControl(physics_kart);
         game.getPhysicalStates().getPhysicsSpace().add(physics_kart);
 

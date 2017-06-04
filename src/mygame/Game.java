@@ -6,9 +6,13 @@ import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.light.Light;
 import com.jme3.light.PointLight;
 import com.jme3.math.Vector3f;
+import com.jme3.post.FilterPostProcessor;
+import com.jme3.post.filters.BloomFilter;
+import com.jme3.post.filters.LightScatteringFilter;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.Spatial;
 import com.jme3.util.SkyFactory;
+import com.jme3.water.WaterFilter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +45,7 @@ public class Game extends SimpleApplication {
         createTrack();
         // createKart();
         createCircuit();
+        createWater();
         std_kart = new Kart(this, "Wii U - Mario Kart 8 - Standard Kart/Standard Kart.obj", "Four Leaf Tires/Leaf Tires.obj");
 
         cam.setLocation(std_kart.getNodeKart().getWorldTranslation().add(new Vector3f(0, 2, 0)));
@@ -58,6 +63,25 @@ public class Game extends SimpleApplication {
         physical_states.getPhysicsSpace().add(physics_track);
         physics_track.setFriction(.5f);
         rootNode.attachChild(track);
+    }
+    
+    private void createWater() {
+        WaterFilter water = new WaterFilter(rootNode, Vector3f.UNIT_Y.mult(-1));
+        FilterPostProcessor fpp = new FilterPostProcessor(assetManager);
+        fpp.addFilter(water);
+        
+        BloomFilter bloom = new BloomFilter();
+        
+        bloom.setExposurePower(55);
+        bloom.setBloomIntensity(1.0f);
+        
+        fpp.addFilter(bloom);
+        
+        LightScatteringFilter lsf = new LightScatteringFilter(Vector3f.UNIT_Y.mult(-300));
+        lsf.setLightDensity(1.0f);
+        fpp.addFilter(lsf);
+        
+        
     }
 
     @Override
