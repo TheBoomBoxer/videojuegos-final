@@ -1,18 +1,25 @@
 package mygame;
 
 import com.jme3.app.SimpleApplication;
+import com.jme3.audio.AudioNode;
+import com.jme3.audio.LowPassFilter;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.input.KeyInput;
+import com.jme3.input.controls.KeyTrigger;
 import com.jme3.light.Light;
 import com.jme3.light.PointLight;
 import com.jme3.math.Vector3f;
 import com.jme3.post.FilterPostProcessor;
 import com.jme3.post.filters.BloomFilter;
+import com.jme3.post.filters.DepthOfFieldFilter;
 import com.jme3.post.filters.LightScatteringFilter;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.Spatial;
+import com.jme3.texture.Texture2D;
 import com.jme3.util.SkyFactory;
 import com.jme3.water.WaterFilter;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,44 +64,62 @@ public class Game extends SimpleApplication {
     private void createTrack() {
         Spatial track = assetManager.loadModel("Wii U - Mario Kart 8 - GCN Dry Dry Desert/Dry Desert Waterless.obj");
         track.addLight(spot);
-        
+
         physics_track = new RigidBodyControl(0f);
         track.addControl(physics_track);
         physical_states.getPhysicsSpace().add(physics_track);
         physics_track.setFriction(.5f);
         rootNode.attachChild(track);
     }
-    
+
     private void createWater() {
         WaterFilter water = new WaterFilter(rootNode, Vector3f.UNIT_Y.mult(-1));
         FilterPostProcessor fpp = new FilterPostProcessor(assetManager);
         fpp.addFilter(water);
-        
+
         BloomFilter bloom = new BloomFilter();
-        
+
         bloom.setExposurePower(55);
         bloom.setBloomIntensity(1.0f);
-        
+
         fpp.addFilter(bloom);
-        
+
         LightScatteringFilter lsf = new LightScatteringFilter(Vector3f.UNIT_Y.mult(-300));
         lsf.setLightDensity(1.0f);
         fpp.addFilter(lsf);
-        
-        
+
+        DepthOfFieldFilter dof = new DepthOfFieldFilter();
+        dof.setFocusDistance(0);
+        dof.setFocusRange(100);
+        fpp.addFilter(dof);
+
+        water.setWaveScale(0.003f);
+        water.setMaxAmplitude(2f);
+        water.setFoamExistence(new Vector3f(1f, 4, 0.5f));
+        water.setFoamTexture((Texture2D) assetManager.loadTexture("Common/MatDefs/Water/Textures/foam2.jpg"));
+
+        water.setRefractionStrength(0.2f);
+ 
+        water.setRadius(30f);
+        water.setCenter(new Vector3f(-5.40856f, 0f, 73.2708f));
+        water.setWaterHeight(-7);
+        System.out.println(water.getShapeType() + ", " + water.getRadius());
+         
+        viewPort.addProcessor(fpp);
+
     }
 
     @Override
     public void simpleUpdate(float tpf) {
         //TODO: add update code
-       std_kart.update(tpf);
+        std_kart.update(tpf);
     }
 
     @Override
     public void simpleRender(RenderManager rm) {
         //TODO: add render code
     }
-    
+
     private void createCircuit() {
         sphere_list.add(new Vector3f(-66.42629f, -0.61749f, -36.41609f));
         sphere_list.add(new Vector3f(-56.63694f, 0.13945f, -62.27739f));
@@ -141,11 +166,11 @@ public class Game extends SimpleApplication {
     public BulletAppState getPhysicalStates() {
         return physical_states;
     }
-    
+
     public Light getSpotLight() {
         return spot;
     }
-    
+
     public List<Vector3f> getSphereList() {
         return sphere_list;
     }

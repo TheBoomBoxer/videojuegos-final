@@ -64,8 +64,8 @@ public class Kart {
         Vector3f next_sphere = game.getSphereList().get(current_sphere);
         Vector3f my_pos = physics_kart.getPhysicsLocation();
         Vector3f dir = next_sphere.subtract(my_pos);
-        System.out.println(next_sphere + ", " + current_sphere);
-        if (dir.length() < 5) {
+       // System.out.println(next_sphere + ", " + current_sphere);
+        if (dir.length() < 10) {
             current_sphere = (current_sphere + 1) % 40;
         }
 
