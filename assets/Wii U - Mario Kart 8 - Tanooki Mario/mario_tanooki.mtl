@@ -31,8 +31,8 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd tanukimariopupil_alb.png
-map_Disp tanukimariopupil_nrm.png
+# map_Kd tanukimariopupil_alb.png
+# map_Disp tanukimariopupil_nrm.png
 
 newmtl Pupil__m_PupilR
 Ns -1.960784
@@ -42,5 +42,5 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd tanukimariopupil_alb.png
-map_Disp tanukimariopupil_nrm.png
+# map_Kd tanukimariopupil_alb.png
+# map_Disp tanukimariopupil_nrm.png
