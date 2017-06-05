@@ -1,12 +1,8 @@
 package mygame;
 
 import com.jme3.app.SimpleApplication;
-import com.jme3.audio.AudioNode;
-import com.jme3.audio.LowPassFilter;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.control.RigidBodyControl;
-import com.jme3.input.KeyInput;
-import com.jme3.input.controls.KeyTrigger;
 import com.jme3.light.Light;
 import com.jme3.light.PointLight;
 import com.jme3.math.Vector3f;
@@ -15,11 +11,11 @@ import com.jme3.post.filters.BloomFilter;
 import com.jme3.post.filters.DepthOfFieldFilter;
 import com.jme3.post.filters.LightScatteringFilter;
 import com.jme3.renderer.RenderManager;
+import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Spatial;
 import com.jme3.texture.Texture2D;
 import com.jme3.util.SkyFactory;
 import com.jme3.water.WaterFilter;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,11 +45,12 @@ public class Game extends SimpleApplication {
         physical_states = new BulletAppState();
         stateManager.attach(physical_states);
         spot = new PointLight(new Vector3f(-50, 100, 100));
+        rootNode.addLight(spot);
         createTrack();
         // createKart();
         createCircuit();
         createWater();
-        std_kart = new Kart(this, "Wii U - Mario Kart 8 - Standard Kart/Standard Kart.obj", "Four Leaf Tires/Leaf Tires.obj");
+        std_kart = new Kart(this, "Wii U - Mario Kart 8 - Standard Kart/Standard Kart.obj");
 
         cam.setLocation(std_kart.getNodeKart().getWorldTranslation().add(new Vector3f(0, 2, 0)));
         cam.lookAt(std_kart.getNodeKart().getWorldTranslation(), Vector3f.UNIT_Y);
@@ -64,6 +61,7 @@ public class Game extends SimpleApplication {
     private void createTrack() {
         Spatial track = assetManager.loadModel("Wii U - Mario Kart 8 - GCN Dry Dry Desert/Dry Desert Waterless.obj");
         track.addLight(spot);
+        track.setShadowMode(ShadowMode.Receive);
 
         physics_track = new RigidBodyControl(0f);
         track.addControl(physics_track);
@@ -100,9 +98,10 @@ public class Game extends SimpleApplication {
 
         water.setRefractionStrength(0.2f);
  
-        water.setRadius(30f);
+        water.setRadius(40f);
         water.setCenter(new Vector3f(-5.40856f, 0f, 73.2708f));
-        water.setWaterHeight(-7);
+        // water.setCenter(new Vector3f(58.43384f, -9.44549f, 65.74243f));
+        water.setWaterHeight(-6.5f);
         System.out.println(water.getShapeType() + ", " + water.getRadius());
          
         viewPort.addProcessor(fpp);

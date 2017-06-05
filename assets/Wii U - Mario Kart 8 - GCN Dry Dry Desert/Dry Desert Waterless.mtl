@@ -2,7 +2,7 @@
 # Material Count: 35
 
 newmtl CausticsArea8
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -12,7 +12,7 @@ d 1.000000
 illum 2
 
 newmtl ddd_Brick
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -23,7 +23,7 @@ illum 2
 map_Kd gcddd_Brick_Alb.png
 
 newmtl ddd_Brick02
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -34,7 +34,7 @@ illum 2
 map_Kd gcddd_Brick02_Alb.png
 
 newmtl ddd_Brick_break
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -45,7 +45,7 @@ illum 2
 map_Kd gcddd_Brick_break_Alb.png
 
 newmtl ddd_Brick_relief
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -56,7 +56,7 @@ illum 2
 map_Kd gcddd_Brick_relief_Alb.png
 
 newmtl ddd_Brick_view
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -67,7 +67,7 @@ illum 2
 map_Kd gcddd_Brick_view_Alb.png
 
 newmtl ddd_Brick_view_break
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -78,7 +78,7 @@ illum 2
 map_Kd gcddd_Brick_view_break_Alb.png
 
 newmtl ddd_Cactus
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -89,7 +89,7 @@ illum 2
 map_Kd gcddd_Cactus_Alb.png
 
 newmtl ddd_Cactus02
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -100,7 +100,7 @@ illum 2
 map_Kd gcddd_Cactus02_Alb.png
 
 newmtl ddd_DIRT_a
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -111,7 +111,7 @@ illum 2
 map_Kd gcddd_road02_Alb.png
 
 newmtl ddd_Flag
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -122,7 +122,7 @@ illum 2
 map_Kd gcddd_Flag_Alb.png
 
 newmtl ddd_NS_board00
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -133,7 +133,7 @@ illum 2
 map_Kd gcddd_ry_board00_Alb.png
 
 newmtl ddd_RESQ_a
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -144,7 +144,7 @@ illum 2
 map_Kd gcddd_road04_Alb.png
 
 newmtl ddd_RESQ_a_Belt
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -155,7 +155,7 @@ illum 2
 map_Kd gcddd_road05_Alb.png
 
 newmtl ddd_RESQ_a_out
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -166,7 +166,7 @@ illum 2
 map_Kd gcddd_road04_Alb.png
 
 newmtl ddd_RESQ_mask_a
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -177,7 +177,7 @@ illum 2
 map_Kd gcddd_road04_Alb.png
 
 newmtl ddd_arijigoku
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -188,7 +188,7 @@ illum 2
 map_Kd gcddd_arijigoku_Alb.png
 
 newmtl ddd_arijigoku_side
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -199,7 +199,7 @@ illum 2
 map_Kd gcddd_arijigoku_side_Alb.png
 
 newmtl ddd_arrow01
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -210,7 +210,7 @@ illum 2
 map_Kd gcddd_arrow01_Alb.png
 
 newmtl ddd_green1
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -221,7 +221,7 @@ illum 2
 map_Kd gcddd_green_Alb.png
 
 newmtl ddd_greenW
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -232,7 +232,7 @@ illum 2
 map_Kd gcddd_green_Alb.png
 
 newmtl ddd_oasisPlantA
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -243,7 +243,7 @@ illum 2
 map_Kd gcddd_oasisPlantA_Alb.png
 
 newmtl ddd_oasis_Bottom00
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -254,7 +254,7 @@ illum 2
 map_Kd gcddd_oasis_bottom_Alb.png
 
 newmtl ddd_oasis_Hole
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -265,7 +265,7 @@ illum 2
 map_Kd gcddd_oasis_Hole_Alb.png
 
 newmtl ddd_oasis_criff
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -276,7 +276,7 @@ illum 2
 map_Kd gcddd_oasis_criff_Alb.png
 
 newmtl ddd_oasis_hole_mlt
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -287,7 +287,7 @@ illum 2
 map_Kd gcddd_oasis_Hole_Alb.png
 
 newmtl ddd_oasis_wall_mlt
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -298,7 +298,7 @@ illum 2
 map_Kd gcddd_oasis_criff_Alb.png
 
 newmtl ddd_road01
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -309,7 +309,7 @@ illum 2
 map_Kd gcddd_road01_Alb.png
 
 newmtl ddd_rock
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -320,7 +320,7 @@ illum 2
 map_Kd gcddd_rock_Alb.png
 
 newmtl gcddd_NS_Sboard00
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -331,7 +331,7 @@ illum 2
 map_Kd gcddd_ry_Sboard00_Alb.png
 
 newmtl gcddd_NS_StartGrid00
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -342,7 +342,7 @@ illum 2
 map_Kd gcddd_ry_StartGrid00_Alb.png
 
 newmtl gcddd_NS_StartGrid01
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -353,7 +353,7 @@ illum 2
 map_Kd gcddd_ry_StartGrid01_Alb.png
 
 newmtl gcddd_NS_StartLine00
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -364,7 +364,7 @@ illum 2
 map_Kd gcddd_ry_StartLine00_Alb.png
 
 newmtl karakara_sekizou01_Blinn
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000
@@ -375,7 +375,7 @@ illum 2
 map_Kd de_zou_Alb.png
 
 newmtl karakara_sphinx_karakara_sphinx_Blinn
-Ns 94.117647
+Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
 Ks 0.000000 0.000000 0.000000

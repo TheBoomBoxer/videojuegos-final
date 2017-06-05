@@ -1,0 +1,79 @@
+<scene export_time="1496662685.122146" exported_by="James" formatVersion="1.0.1" previous_export_time="1496662171.2142549" >
+  <nodes >
+    <node name="TireB_B__m_Tire" >
+      <position x="-0.516990" y="3.977720" z="0.715930" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity actor="False" anisotropic_friction="False" damping_rot="0.10000000149011612" damping_trans="0.03999999910593033" friction_x="1.0" friction_y="1.0" friction_z="1.0" ghost="False" inertia_tensor="0.4000000059604645" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" lock_trans_x="False" lock_trans_y="False" lock_trans_z="False" mass="1.0" mass_radius="1.0" meshFile="Front_Right.mesh" name="Front Right" physics_type="STATIC" velocity_max="0.0" velocity_min="0.0" />
+    </node>
+    <node name="TireB_B__m_Tire.001" >
+      <position x="0.516987" y="3.977722" z="0.715934" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity actor="False" anisotropic_friction="False" damping_rot="0.10000000149011612" damping_trans="0.03999999910593033" friction_x="1.0" friction_y="1.0" friction_z="1.0" ghost="False" inertia_tensor="0.4000000059604645" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" lock_trans_x="False" lock_trans_y="False" lock_trans_z="False" mass="1.0" mass_radius="1.0" meshFile="Front_Left.mesh" name="Front Left" physics_type="STATIC" velocity_max="0.0" velocity_min="0.0" />
+    </node>
+    <node name="TireB_F__m_Tire" >
+      <position x="-0.507400" y="3.964160" z="-0.374910" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity actor="False" anisotropic_friction="False" damping_rot="0.10000000149011612" damping_trans="0.03999999910593033" friction_x="1.0" friction_y="1.0" friction_z="1.0" ghost="False" inertia_tensor="0.4000000059604645" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" lock_trans_x="False" lock_trans_y="False" lock_trans_z="False" mass="1.0" mass_radius="1.0" meshFile="Back_Right.mesh" name="Back Right" physics_type="STATIC" velocity_max="0.0" velocity_min="0.0" />
+    </node>
+    <node name="TireB_F__m_Tire.001" >
+      <position x="0.507403" y="3.964157" z="-0.374909" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity actor="False" anisotropic_friction="False" damping_rot="0.10000000149011612" damping_trans="0.03999999910593033" friction_x="1.0" friction_y="1.0" friction_z="1.0" ghost="False" inertia_tensor="0.4000000059604645" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" lock_trans_x="False" lock_trans_y="False" lock_trans_z="False" mass="1.0" mass_radius="1.0" meshFile="Back_Left.mesh" name="Back Left" physics_type="STATIC" velocity_max="0.0" velocity_min="0.0" />
+    </node>
+    <node name="Standard Kart" >
+      <position x="0.000000" y="4.276910" z="-0.000000" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="-0.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity actor="False" anisotropic_friction="False" damping_rot="0.10000000149011612" damping_trans="0.03999999910593033" friction_x="1.0" friction_y="1.0" friction_z="1.0" ghost="False" inertia_tensor="0.4000000059604645" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" lock_trans_x="False" lock_trans_y="False" lock_trans_z="False" mass="1.0" mass_radius="1.0" meshFile="Standard_Kart.mesh" name="Standard Kart" physics_type="STATIC" velocity_max="0.0" velocity_min="0.0" />
+    </node>
+  </nodes>
+  <externals >
+    <item type="material" >
+      <file name="C:\Users\James\Documents\GitHub\videojuegos-final\assets\Models\Standard Kart\FrontRight-geom.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\James\Documents\GitHub\videojuegos-final\assets\Models\Standard Kart\FrontLeft-geom.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\James\Documents\GitHub\videojuegos-final\assets\Models\Standard Kart\BackRight-geom.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\James\Documents\GitHub\videojuegos-final\assets\Models\Standard Kart\BackLeft-geom.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\James\Documents\GitHub\videojuegos-final\assets\Models\Standard Kart\Emblem-geom.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\James\Documents\GitHub\videojuegos-final\assets\Models\Standard Kart\Kart-geom.material" />
+    </item>
+  </externals>
+  <environment >
+    <colourDiffuse b="0.05087608844041824" g="0.05087608844041824" r="0.05087608844041824" />
+    <colourBackground b="0.05087608844041824" g="0.05087608844041824" r="0.05087608844041824" />
+    <colourAmbient b="0.0" g="0.0" r="0.0" />
+  </environment>
+</scene>
