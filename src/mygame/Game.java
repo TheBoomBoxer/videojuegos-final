@@ -52,8 +52,8 @@ public class Game extends SimpleApplication {
         createWater();
         std_kart = new Kart(this, "Wii U - Mario Kart 8 - Standard Kart/Standard Kart.obj");
 
-        cam.setLocation(std_kart.getNodeKart().getWorldTranslation().add(new Vector3f(0, 2, 0)));
-        cam.lookAt(std_kart.getNodeKart().getWorldTranslation(), Vector3f.UNIT_Y);
+        cam.setLocation(std_kart.getVehicleControl().getPhysicsLocation().add(new Vector3f(0, 2, 0)));
+        cam.lookAt(std_kart.getVehicleControl().getPhysicsLocation(), Vector3f.UNIT_Y);
 
         rootNode.attachChild(SkyFactory.createSky(getAssetManager(), "Textures/Sky/Bright/BrightSky.dds", SkyFactory.EnvMapType.CubeMap));
     }
@@ -62,6 +62,9 @@ public class Game extends SimpleApplication {
         Spatial track = assetManager.loadModel("Wii U - Mario Kart 8 - GCN Dry Dry Desert/Dry Desert Waterless.obj");
         track.addLight(spot);
         track.setShadowMode(ShadowMode.Receive);
+        
+        Spatial spheres = assetManager.loadModel("Control Spheres/spheres.obj");
+        rootNode.attachChild(spheres);
 
         physics_track = new RigidBodyControl(0f);
         track.addControl(physics_track);
@@ -112,6 +115,7 @@ public class Game extends SimpleApplication {
     public void simpleUpdate(float tpf) {
         //TODO: add update code
         std_kart.update(tpf);
+        
     }
 
     @Override

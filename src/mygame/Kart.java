@@ -26,22 +26,53 @@ import com.jme3.scene.Spatial;
  */
 public class Kart implements ActionListener {
 
+    public static final float MAX_STEER_ANGLE = (float) Math.PI / 10f; // 45 degrees
     private Node node_kart;
     private Game game;
     private VehicleControl vehicle_control;
     private float wheelRadius;
     private float steeringValue;
     private float accelerationValue;
+    private int current_point;
+    private Vector3f car_eyes;
 
     public Kart(Game game, String kart) {
-        accelerationValue = 800;
+        current_point = 0;
+        accelerationValue = 0;
+        car_eyes = Vector3f.UNIT_Z.mult(-1);
         this.game = game;
+        setupKeys();
         buildPlayer2();
     }
 
     public void update(float tf) {
         // game.getCamera().lookAt(node_kart.getWorldTranslation(), Vector3f.UNIT_Y);
         // System.out.println(node_kart.getWorldTranslation());
+        Vector3f my_pos = vehicle_control.getPhysicsLocation();
+        Vector3f eyes = vehicle_control.getPhysicsRotation().getRotationColumn(2).normalize();      
+        Vector3f back = new Vector3f(my_pos.x + 3 * eyes.x, my_pos.y + 3 * eyes.y + 5, my_pos.z + 6 * eyes.z);
+        Vector3f front = new Vector3f(my_pos.x - eyes.x, my_pos.y - eyes.y + 3, my_pos.z - eyes.z);
+        game.getCamera().setLocation(back);
+        game.getCamera().lookAt(front, Vector3f.UNIT_Y);
+        
+        Vector3f next_point = game.getSphereList().get(current_point);
+        Vector3f dir = next_point.subtract(my_pos);
+        
+        System.out.println(Math.acos(dir.normalize().dot(eyes)));
+        
+        if(Math.acos(dir.normalize().dot(eyes)) > 0.001 || Math.acos(dir.dot(eyes)) < -0.001) {
+            float steerAngle = dir.x / dir.length() * -MAX_STEER_ANGLE;
+            vehicle_control.steer(steerAngle);
+            // System.out.println("GIRANDO...");
+        }
+        
+        vehicle_control.accelerate(-150);
+        System.out.println("Distance to point " + current_point + ": " + dir.length());
+        // vehicle_control.accelerate(-400f);
+        
+        if (dir.length() < 7) {
+            current_point = current_point + 1 % 40;
+        }
     }
 
     public Node getNodeKart() {
@@ -206,6 +237,7 @@ public class Kart implements ActionListener {
         vehicle_control.getWheel(2).setFrictionSlip(4);
         vehicle_control.getWheel(3).setFrictionSlip(4);
 
+        vehicle_control.setPhysicsLocation(new Vector3f(-65f, 5, 10));
         game.getRootNode().attachChild(node_kart);
         game.getPhysicalStates().getPhysicsSpace().add(vehicle_control);
     }
@@ -243,14 +275,13 @@ public class Kart implements ActionListener {
             vehicle_control.steer(steeringValue);
         } //note that our fancy car actually goes backwards..
         else if (binding.equals("Ups")) {
-            System.out.println("ACCELERATE");
             if (value) {
-                accelerationValue -= 800;
+                accelerationValue += 400;
             } else {
-                accelerationValue += 800;
+               accelerationValue -= 800;
             }
             vehicle_control.accelerate(accelerationValue);
-            vehicle_control.setCollisionShape(CollisionShapeFactory.createDynamicMeshShape(findGeom(node_kart, "Kart")));
+            vehicle_control.setCollisionShape(CollisionShapeFactory.createDynamicMeshShape(findGeom(node_kart, "Car")));
         } else if (binding.equals("Downs")) {
             if (value) {
                 vehicle_control.brake(40f);
@@ -260,7 +291,7 @@ public class Kart implements ActionListener {
         } else if (binding.equals("Reset")) {
             if (value) {
                 System.out.println("Reset");
-                vehicle_control.setPhysicsLocation(Vector3f.ZERO);
+                vehicle_control.setPhysicsLocation(new Vector3f(-65, 5, 10));
                 vehicle_control.setPhysicsRotation(new Matrix3f());
                 vehicle_control.setLinearVelocity(Vector3f.ZERO);
                 vehicle_control.setAngularVelocity(Vector3f.ZERO);
@@ -271,4 +302,8 @@ public class Kart implements ActionListener {
 
     }
 
+    public VehicleControl getVehicleControl() {
+        return vehicle_control;
+    }
+ 
 }
