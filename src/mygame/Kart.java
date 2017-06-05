@@ -49,7 +49,8 @@ public class Kart implements ActionListener {
         // game.getCamera().lookAt(node_kart.getWorldTranslation(), Vector3f.UNIT_Y);
         // System.out.println(node_kart.getWorldTranslation());
         Vector3f my_pos = vehicle_control.getPhysicsLocation();
-        Vector3f eyes = vehicle_control.getPhysicsRotation().getRotationColumn(2).normalize();      
+        Vector3f eyes = vehicle_control.getPhysicsRotation().getRotationColumn(2).normalize();
+        Vector3f eyesNegado = eyes.mult(-1);
         Vector3f back = new Vector3f(my_pos.x + 3 * eyes.x, my_pos.y + 3 * eyes.y + 5, my_pos.z + 6 * eyes.z);
         Vector3f front = new Vector3f(my_pos.x - eyes.x, my_pos.y - eyes.y + 3, my_pos.z - eyes.z);
         game.getCamera().setLocation(back);
@@ -58,20 +59,27 @@ public class Kart implements ActionListener {
         Vector3f next_point = game.getSphereList().get(current_point);
         Vector3f dir = next_point.subtract(my_pos);
         
-        System.out.println(Math.acos(dir.normalize().dot(eyes)));
+        System.out.println("eyesNegado: " + Math.acos(dir.normalize().dot(eyesNegado)));
         
-        if(Math.acos(dir.normalize().dot(eyes)) > 0.001 || Math.acos(dir.dot(eyes)) < -0.001) {
-            float steerAngle = dir.x / dir.length() * -MAX_STEER_ANGLE;
+        if(Math.acos(dir.normalize().dot(eyesNegado)) > 0.1 || Math.acos(dir.dot(eyesNegado)) < -0.1) {
+           //float steerAngle = (float) Math.acos(dir.normalize().dot(eyesNegado)) * MAX_STEER_ANGLE;
+           float steerAngle = dir.normalize().cross(eyesNegado).y * -MAX_STEER_ANGLE;
             vehicle_control.steer(steerAngle);
-            // System.out.println("GIRANDO...");
+            System.out.println("Algun mensajito: " + steerAngle/MAX_STEER_ANGLE);
+        }
+        else
+        {
+            System.out.println("Entra en el else");
+            vehicle_control.steer(0);
         }
         
         vehicle_control.accelerate(-150);
         System.out.println("Distance to point " + current_point + ": " + dir.length());
         // vehicle_control.accelerate(-400f);
         
-        if (dir.length() < 7) {
+        if (dir.length() < 9) {
             current_point = current_point + 1 % 40;
+            System.out.println("                                                          current_point: " + current_point);
         }
     }
 

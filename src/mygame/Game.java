@@ -141,10 +141,10 @@ public class Game extends SimpleApplication {
         sphere_list.add(new Vector3f(75.94656f, 0.42250f, -50.74335f));
         sphere_list.add(new Vector3f(71.36706f, -1.50554f, -38.28936f));
         sphere_list.add(new Vector3f(66.57477f, -2.22360f, -28.66216f));
-        sphere_list.add(new Vector3f(60.49354f, -2.22360f, -22.53596f));
-        sphere_list.add(new Vector3f(53.47881f, -2.22360f, -14.74751f));
-        sphere_list.add(new Vector3f(50.31588f, -2.22360f, -6.83443f));
-        sphere_list.add(new Vector3f(50.64336f, -2.22360f, 1.66141f));
+        sphere_list.add(new Vector3f(58.74326f, -4.39841f, -14.74751f));
+        sphere_list.add(new Vector3f(57.27221f, -5.25833f, -6.43602f));
+        sphere_list.add(new Vector3f(57.68353f, -5.58911f, -1.66141f));
+        sphere_list.add(new Vector3f(59.99884f, -4.77143f, 8.94757f)); //21
         sphere_list.add(new Vector3f(53.70052f, -2.22360f, 8.94757f));
         sphere_list.add(new Vector3f(60.64709f, -2.22360f, 15.85904f));
         sphere_list.add(new Vector3f(66.17561f, -2.22360f, 26.65774f));
@@ -152,7 +152,7 @@ public class Game extends SimpleApplication {
         sphere_list.add(new Vector3f(64.55494f, -0.16024f, 55.87842f));
         sphere_list.add(new Vector3f(59.31455f, -0.16024f, 64.59521f));
         sphere_list.add(new Vector3f(49.18835f, -0.16024f, 71.75800f));
-        sphere_list.add(new Vector3f(34.13102f, -1.67521f, 77.90910f)); // 28
+        sphere_list.add(new Vector3f(34.13102f, -1.67521f, 77.90910f)); // 29
         sphere_list.add(new Vector3f(22.55143f, -3.40478f, 73.24865f));
         sphere_list.add(new Vector3f(10.99477f, -3.40478f, 68.04240f));
         sphere_list.add(new Vector3f(-1.76227f, -3.40478f, 53.90268f));
