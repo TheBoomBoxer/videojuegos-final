@@ -1,6 +1,7 @@
 package mygame;
 
 import com.jme3.app.SimpleApplication;
+import com.jme3.bounding.BoundingBox;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.light.Light;
@@ -32,6 +33,7 @@ public class Game extends SimpleApplication {
     private Light spot;
     private List<Vector3f> sphere_list;
     private Kart std_kart;
+    private BoundingBox box_1, box_2, box_3;
 
     public static void main(String[] args) {
         Game app = new Game();
@@ -48,8 +50,9 @@ public class Game extends SimpleApplication {
         rootNode.addLight(spot);
         createTrack();
         // createKart();
-        createCircuit();
+        createCircuit2();
         createWater();
+        createWaterPulses();
         std_kart = new Kart(this, "Wii U - Mario Kart 8 - Standard Kart/Standard Kart.obj");
 
         cam.setLocation(std_kart.getVehicleControl().getPhysicsLocation().add(new Vector3f(0, 2, 0)));
@@ -63,7 +66,7 @@ public class Game extends SimpleApplication {
         track.addLight(spot);
         track.setShadowMode(ShadowMode.Receive);
         
-        Spatial spheres = assetManager.loadModel("Control Spheres/spheres.obj");
+        Spatial spheres = assetManager.loadModel("Control Spheres/spheres_big.obj");
         rootNode.attachChild(spheres);
 
         physics_track = new RigidBodyControl(0f);
@@ -71,6 +74,12 @@ public class Game extends SimpleApplication {
         physical_states.getPhysicsSpace().add(physics_track);
         physics_track.setFriction(.5f);
         rootNode.attachChild(track);
+    }
+    
+    private void createWaterPulses() {
+        box_1 = new BoundingBox(new Vector3f(27.11419f, -25.55816f, 264.05148f), 14f, 5f, 14f);
+        box_2 = new BoundingBox(new Vector3f(-21.80325f, -25.55816f, 271.94205f), 14f, 5f, 14f);
+        box_3 = new BoundingBox(new Vector3f(-75.81601f, -25.55816f, 243.22943f), 14f, 5f, 14f);
     }
 
     private void createWater() {
@@ -101,10 +110,10 @@ public class Game extends SimpleApplication {
 
         water.setRefractionStrength(0.2f);
  
-        water.setRadius(40f);
-        water.setCenter(new Vector3f(-5.40856f, 0f, 73.2708f));
+        water.setRadius(130f);
+        water.setCenter(new Vector3f(-25.38422f, 0f, 269.81128f));
         // water.setCenter(new Vector3f(58.43384f, -9.44549f, 65.74243f));
-        water.setWaterHeight(-6.5f);
+        water.setWaterHeight(-21f);
         System.out.println(water.getShapeType() + ", " + water.getRadius());
          
         viewPort.addProcessor(fpp);
@@ -121,6 +130,38 @@ public class Game extends SimpleApplication {
     @Override
     public void simpleRender(RenderManager rm) {
         //TODO: add render code
+    }
+    
+    private void createCircuit2() {
+        sphere_list.add(new Vector3f(-245.62790f, 5.30044f, -123.25159f));
+        sphere_list.add(new Vector3f(-213.13654f, 5.30044f, -213.08435f));
+        sphere_list.add(new Vector3f(-150.55319f, 5.30044f, -248.03986f));
+        sphere_list.add(new Vector3f(-93.02710f, 5.30044f, -231.53078f));
+        sphere_list.add(new Vector3f(-39.56034f, 5.30044f, -184.55576f));
+        sphere_list.add(new Vector3f(11.20152f, 5.30044f, -217.32643f));
+        sphere_list.add(new Vector3f(43.89831f, 5.30044f, -223.20647f));
+        sphere_list.add(new Vector3f(82.01228f, 5.30044f, -175.97444f));
+        sphere_list.add(new Vector3f(144.71498f, 5.30044f, -225.04626f));
+        sphere_list.add(new Vector3f(217.53221f, 5.30044f, -249.04906f));
+        sphere_list.add(new Vector3f(274.82755f, 5.30044f, -226.33450f));
+        sphere_list.add(new Vector3f(249.09311f, 5.30044f, -134.26569f));
+        sphere_list.add(new Vector3f(204.95755f, 5.30044f, -60.64651f));
+        sphere_list.add(new Vector3f(189.94162f, 5.30044f, -18.23472f));
+        sphere_list.add(new Vector3f(203.62585f, 5.30044f, 20.75019f));
+        sphere_list.add(new Vector3f(230.60085f, 5.30044f, 72.75465f));
+        sphere_list.add(new Vector3f(248.51663f, 5.30044f, 139.93573f));
+        sphere_list.add(new Vector3f(241.56050f, 5.30044f, 185.29614f));
+        sphere_list.add(new Vector3f(219.48958f, 5.30044f, 227.80998f));
+        sphere_list.add(new Vector3f(170.75247f, 5.30044f, 258.18802f));
+        sphere_list.add(new Vector3f(115.49359f, 5.30044f, 263.94482f));
+        sphere_list.add(new Vector3f(48.13744f, 5.30044f, 247.92998f));
+        sphere_list.add(new Vector3f(-6.63051f, 5.30044f, 261.22830f));
+        sphere_list.add(new Vector3f(-53.62571f, 5.30044f, 239.49409f));
+        sphere_list.add(new Vector3f(-163.25490f, 5.30044f, 239.49409f));
+        sphere_list.add(new Vector3f(-255.95808f, 5.30044f, 237.24933f));
+        sphere_list.add(new Vector3f(-268.59679f, 5.30044f, 184.38710f));
+        sphere_list.add(new Vector3f(-225.15872f, 5.30044f, 127.73737f));
+        
     }
 
     private void createCircuit() {
@@ -176,6 +217,21 @@ public class Game extends SimpleApplication {
 
     public List<Vector3f> getSphereList() {
         return sphere_list;
+    }
+    
+    public BoundingBox getBox1() {
+        return box_1;
+        
+    }
+    
+    public BoundingBox getBox2() {
+        return box_2;
+        
+    }
+    
+    public BoundingBox getBox3() {
+        return box_3;
+        
     }
 
 }

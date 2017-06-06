@@ -55,31 +55,37 @@ public class Kart implements ActionListener {
         Vector3f front = new Vector3f(my_pos.x - eyes.x, my_pos.y - eyes.y + 3, my_pos.z - eyes.z);
         game.getCamera().setLocation(back);
         game.getCamera().lookAt(front, Vector3f.UNIT_Y);
-        
+
+        // If the car enters a water pulse
+        if (game.getBox1().contains(vehicle_control.getPhysicsLocation()) || 
+                game.getBox2().contains(vehicle_control.getPhysicsLocation()) || 
+                game.getBox3().contains(vehicle_control.getPhysicsLocation())) {
+            
+            vehicle_control.applyCentralForce(new Vector3f(0, 4000, 0));
+        }
+
         Vector3f next_point = game.getSphereList().get(current_point);
         Vector3f dir = next_point.subtract(my_pos);
-        
+
         System.out.println("eyesNegado: " + Math.acos(dir.normalize().dot(eyesNegado)));
-        
-        if(Math.acos(dir.normalize().dot(eyesNegado)) > 0.1 || Math.acos(dir.dot(eyesNegado)) < -0.1) {
-           //float steerAngle = (float) Math.acos(dir.normalize().dot(eyesNegado)) * MAX_STEER_ANGLE;
-           float steerAngle = dir.normalize().cross(eyesNegado).y * -MAX_STEER_ANGLE;
+
+        if (Math.acos(dir.normalize().dot(eyesNegado)) > 0.1 || Math.acos(dir.dot(eyesNegado)) < -0.1) {
+            // float steerAngle = (float) Math.acos(dir.normalize().dot(eyesNegado)) * MAX_STEER_ANGLE;
+            float steerAngle = dir.normalize().cross(eyesNegado).y * -MAX_STEER_ANGLE;
             vehicle_control.steer(steerAngle);
-            System.out.println("Algun mensajito: " + steerAngle/MAX_STEER_ANGLE);
-        }
-        else
-        {
+            System.out.println("Algun mensajito: " + steerAngle / MAX_STEER_ANGLE);
+        } else {
             System.out.println("Entra en el else");
             vehicle_control.steer(0);
         }
-        
+
         vehicle_control.accelerate(-150);
         System.out.println("Distance to point " + current_point + ": " + dir.length());
         // vehicle_control.accelerate(-400f);
-        
-        if (dir.length() < 9) {
-            current_point = current_point + 1 % 40;
-            System.out.println("                                                          current_point: " + current_point);
+
+        if (dir.length() < 12) {
+            current_point = (current_point + 1) % game.getSphereList().size();
+            System.out.println("current_point: " + current_point);
         }
     }
 
@@ -148,7 +154,6 @@ public class Kart implements ActionListener {
 
         vehicle_control.addWheel(wheel_fr.getParent(), box.getCenter().add(0, -front_wheel_h, 0),
                 wheelDirection, wheelAxle, 0.2f, wheelRadius, true);
-       
 
         Geometry wheel_fl = findGeom(node_kart, "FrontLeft");
         System.out.println(wheel_fl);
@@ -161,7 +166,7 @@ public class Kart implements ActionListener {
 
         Geometry wheel_br = findGeom(node_kart, "BackRight");
         System.out.println(wheel_br);
-        
+
         wheel_br.center();
 
         box = (BoundingBox) wheel_br.getModelBound();
@@ -178,12 +183,12 @@ public class Kart implements ActionListener {
 
         vehicle_control.getWheel(2).setFrictionSlip(4);
         vehicle_control.getWheel(3).setFrictionSlip(4);
-        
+
         System.out.println(node_kart.getWorldTranslation());
         game.getRootNode().attachChild(node_kart);
         game.getPhysicalStates().getPhysicsSpace().add(vehicle_control);
     }
-    
+
     private void buildPlayer2() {
         float stiffness = 120.0f; // 200 = f1 car
         float compValue = 0.2f; // (lower than damp!)
@@ -223,7 +228,6 @@ public class Kart implements ActionListener {
         vehicle_control.addWheel(wheel_fr.getParent(), box.getCenter().add(0, -front_wheel_h, 0),
                 wheelDirection, wheelAxle, 0.2f, wheelRadius, true);
 
-        
         Geometry wheel_fl = findGeom(node_kart, "WheelFrontLeft");
         wheel_fl.center();
         box = (BoundingBox) wheel_fl.getModelBound();
@@ -245,11 +249,12 @@ public class Kart implements ActionListener {
         vehicle_control.getWheel(2).setFrictionSlip(4);
         vehicle_control.getWheel(3).setFrictionSlip(4);
 
-        vehicle_control.setPhysicsLocation(new Vector3f(-65f, 5, 10));
+        vehicle_control.setPhysicsLocation(new Vector3f(-234.37828f, 10.56335f, 29.88176f));
+
         game.getRootNode().attachChild(node_kart);
         game.getPhysicalStates().getPhysicsSpace().add(vehicle_control);
     }
-    
+
     private void setupKeys() {
         game.getInputManager().addMapping("Lefts", new KeyTrigger(KeyInput.KEY_H));
         game.getInputManager().addMapping("Rights", new KeyTrigger(KeyInput.KEY_K));
@@ -262,7 +267,7 @@ public class Kart implements ActionListener {
         game.getInputManager().addListener(this, "Ups");
         game.getInputManager().addListener(this, "Downs");
         game.getInputManager().addListener(this, "Space");
-        game.getInputManager().addListener(this, "Reset");
+        game.getInputManager().addListener(this, "Reset"); 
     }
 
     @Override
@@ -286,7 +291,7 @@ public class Kart implements ActionListener {
             if (value) {
                 accelerationValue += 400;
             } else {
-               accelerationValue -= 800;
+                accelerationValue -= 800;
             }
             vehicle_control.accelerate(accelerationValue);
             vehicle_control.setCollisionShape(CollisionShapeFactory.createDynamicMeshShape(findGeom(node_kart, "Car")));
@@ -313,5 +318,5 @@ public class Kart implements ActionListener {
     public VehicleControl getVehicleControl() {
         return vehicle_control;
     }
- 
+
 }
