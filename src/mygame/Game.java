@@ -33,6 +33,7 @@ public class Game extends SimpleApplication {
     private Light spot;
     private List<Vector3f> sphere_list;
     private Kart std_kart;
+    private Kart std_kart2;
     private BoundingBox box_1, box_2, box_3;
 
     public static void main(String[] args) {
@@ -53,10 +54,11 @@ public class Game extends SimpleApplication {
         createCircuit2();
         createWater();
         createWaterPulses();
-        std_kart = new Kart(this, "Wii U - Mario Kart 8 - Standard Kart/Standard Kart.obj");
-
-        cam.setLocation(std_kart.getVehicleControl().getPhysicsLocation().add(new Vector3f(0, 2, 0)));
-        cam.lookAt(std_kart.getVehicleControl().getPhysicsLocation(), Vector3f.UNIT_Y);
+        std_kart = new Kart(this, "Wii U - Mario Kart 8 - Standard Kart/Standard Kart.obj",new Vector3f(-234.37828f, 10.56335f, 29.88176f));
+        std_kart.setSetFollowCam(true);
+        //std_kart2 = new Kart(this, "Wii U - Mario Kart 8 - Standard Kart/Standard Kart.obj",new Vector3f(-65, -2, 10));
+        //cam.setLocation(std_kart.getVehicleControl().getPhysicsLocation().add(new Vector3f(0, 2, 0)));
+        //cam.lookAt(std_kart.getVehicleControl().getPhysicsLocation(), Vector3f.UNIT_Y);
 
         rootNode.attachChild(SkyFactory.createSky(getAssetManager(), "Textures/Sky/Bright/BrightSky.dds", SkyFactory.EnvMapType.CubeMap));
     }
@@ -124,7 +126,7 @@ public class Game extends SimpleApplication {
     public void simpleUpdate(float tpf) {
         //TODO: add update code
         std_kart.update(tpf);
-        
+        //std_kart2.update(tpf);
     }
 
     @Override

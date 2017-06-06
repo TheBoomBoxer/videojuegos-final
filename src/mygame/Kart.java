@@ -29,20 +29,35 @@ public class Kart implements ActionListener {
     public static final float MAX_STEER_ANGLE = (float) Math.PI / 10f; // 45 degrees
     private Node node_kart;
     private Game game;
+    private Vector3f pos = new Vector3f();
     private VehicleControl vehicle_control;
     private float wheelRadius;
     private float steeringValue;
     private float accelerationValue;
     private int current_point;
     private Vector3f car_eyes;
+    private Long time;
+    private boolean setFollowCam = false;
+    private Vector3f posAnterior;
+    
+    public boolean isSetFollowCam() {
+        return setFollowCam;
+    }
 
-    public Kart(Game game, String kart) {
+    public void setSetFollowCam(boolean setFollowCam) {
+        this.setFollowCam = setFollowCam;
+    }
+
+    public Kart(Game game, String kart, Vector3f pos) {
         current_point = 0;
         accelerationValue = 0;
         car_eyes = Vector3f.UNIT_Z.mult(-1);
         this.game = game;
+        this.pos = pos;
+        posAnterior = pos;
         setupKeys();
         buildPlayer2();
+        //time = System.currentTimeMillis();
     }
 
     public void update(float tf) {
@@ -53,8 +68,11 @@ public class Kart implements ActionListener {
         Vector3f eyesNegado = eyes.mult(-1);
         Vector3f back = new Vector3f(my_pos.x + 3 * eyes.x, my_pos.y + 3 * eyes.y + 5, my_pos.z + 6 * eyes.z);
         Vector3f front = new Vector3f(my_pos.x - eyes.x, my_pos.y - eyes.y + 3, my_pos.z - eyes.z);
-        game.getCamera().setLocation(back);
-        game.getCamera().lookAt(front, Vector3f.UNIT_Y);
+        if (setFollowCam) {
+            game.getCamera().setLocation(back);
+            game.getCamera().lookAt(front, Vector3f.UNIT_Y);
+        }
+        System.out.println(current_point + "point ");
 
         // If the car enters a water pulse
         if (game.getBox1().contains(vehicle_control.getPhysicsLocation()) || 
@@ -79,14 +97,29 @@ public class Kart implements ActionListener {
             vehicle_control.steer(0);
         }
 
-        vehicle_control.accelerate(-150);
+        vehicle_control.accelerate(-500);
         System.out.println("Distance to point " + current_point + ": " + dir.length());
         // vehicle_control.accelerate(-400f);
 
         if (dir.length() < 12) {
+            time = System.currentTimeMillis();
             current_point = (current_point + 1) % game.getSphereList().size();
             System.out.println("current_point: " + current_point);
         }
+        
+//        if(time!=null && System.currentTimeMillis() - time > 5000 /* && (vehicle_control.getPhysicsLocation().subtract(posAnterior)).length() < 0.00001*/)
+//
+//        {
+//            System.out.println("ATASCADO");
+//            vehicle_control.setPhysicsLocation(pos);
+//            current_point =0;
+//            vehicle_control.setPhysicsRotation(Matrix3f.IDENTITY);
+//            vehicle_control.clearForces();
+//            time =null;
+//        }
+        
+//        if(vehicle_control.getPhysicsLocation().subtract(posAnterior) )
+//        posAnterior = vehicle_control.getPhysicsLocation();
     }
 
     public Node getNodeKart() {
@@ -197,6 +230,7 @@ public class Kart implements ActionListener {
 
         //Load model and get chassis Geometry
         node_kart = (Node) game.getAssetManager().loadModel("Models/Ferrari/Car.scene");
+        //node_kart.scale(0.1f);
         node_kart.setShadowMode(ShadowMode.Cast);
         Geometry chasis = findGeom(node_kart, "Car");
         BoundingBox box;
@@ -249,7 +283,7 @@ public class Kart implements ActionListener {
         vehicle_control.getWheel(2).setFrictionSlip(4);
         vehicle_control.getWheel(3).setFrictionSlip(4);
 
-        vehicle_control.setPhysicsLocation(new Vector3f(-234.37828f, 10.56335f, 29.88176f));
+        vehicle_control.setPhysicsLocation(pos);
 
         game.getRootNode().attachChild(node_kart);
         game.getPhysicalStates().getPhysicsSpace().add(vehicle_control);
