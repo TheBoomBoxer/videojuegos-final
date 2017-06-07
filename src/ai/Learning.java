@@ -24,38 +24,42 @@ public class Learning {
         Configuration conf = new DefaultConfiguration();
         // Add custom mutation operator
         conf.getGeneticOperators().clear();
-        
+
         TwoWayMutationOperator mutOp = new TwoWayMutationOperator(conf, 6);
         conf.addGeneticOperator(mutOp);
-        
+
         conf.addGeneticOperator(new CrossoverOperator(conf));
         conf.setPreservFittestIndividual(true);
         conf.setKeepPopulationSizeConstant(false);
-        
+
         RacerFitnessFunction myFunc = new RacerFitnessFunction();
         System.out.println("Ha creado la fitness function.");
-        
+
         conf.setFitnessFunction(myFunc);
-        
+
         Gene[] sampleGene = new Gene[2];
-        
-        sampleGene[0] = new IntegerGene(conf, 50, 700);
-        sampleGene[1] = new IntegerGene(conf, 0, 8);
-        
+
+        sampleGene[0] = new IntegerGene(conf, 100, 500);
+        sampleGene[1] = new IntegerGene(conf, 3, 15);
+
         Chromosome sampleChromosome = new Chromosome(conf, sampleGene);
         conf.setSampleChromosome(sampleChromosome);
-        conf.setPopulationSize(15);
-        
+        conf.setPopulationSize(10);
+
         Genotype population = Genotype.randomInitialGenotype(conf);
-        
-        for(int i = 0; i < 25; i++) {
+
+        for (int i = 0; i < 25; i++) {
+            System.out.println("Iteracion " + i + ", poblacion " + population.getPopulation().size());
             population.evolve();
         }
-        
+
         IChromosome bestSolutionSoFar = population.getFittestChromosome();
-        
+
         System.out.println("The best solution contained the following: ");
-        System.out.println(bestSolutionSoFar.getFitnessValue());
+        System.out.println("fitness " + bestSolutionSoFar.getFitnessValue());
+        System.out.println("aceleracion " + bestSolutionSoFar.getGene(0));
+        System.out.println("steer " + bestSolutionSoFar.getGene(1));
+        System.out.println("POR FIN");
     }
-    
+
 }

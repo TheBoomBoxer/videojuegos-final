@@ -25,6 +25,7 @@ import com.jme3.scene.Spatial;
  * @author James
  */
 public class Kart implements ActionListener {
+
     private float max_steer_angle, acceleration;
     private Node node_kart;
     private Game game;
@@ -38,7 +39,17 @@ public class Kart implements ActionListener {
     private Long time;
     private boolean setFollowCam = false;
     private Vector3f posAnterior;
-    
+    private boolean alive;
+    private Long time_executed;
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+
     public boolean isSetFollowCam() {
         return setFollowCam;
     }
@@ -49,84 +60,92 @@ public class Kart implements ActionListener {
 
     public Kart(Game game, String kart, Vector3f pos, float accl, float maxstr) {
         acceleration = -accl;
-        max_steer_angle = (float) Math.PI / (maxstr-4);
+        max_steer_angle = (float) Math.PI / maxstr;
         current_point = 0;
         accelerationValue = 0;
         car_eyes = Vector3f.UNIT_Z.mult(-1);
         this.game = game;
         this.pos = pos;
+        alive = true;
         posAnterior = pos;
         setupKeys();
         buildPlayer2();
         time = System.currentTimeMillis();
+        time_executed = System.currentTimeMillis();
     }
 
     public void update(float tf) {
-        // game.getCamera().lookAt(node_kart.getWorldTranslation(), Vector3f.UNIT_Y);
-        // System.out.println(node_kart.getWorldTranslation());
-        Vector3f my_pos = vehicle_control.getPhysicsLocation();
-        Vector3f eyes = vehicle_control.getPhysicsRotation().getRotationColumn(2).normalize();
-        Vector3f eyesNegado = eyes.mult(-1);
-        Vector3f back = new Vector3f(my_pos.x + 3 * eyes.x, my_pos.y + 3 * eyes.y + 3, my_pos.z + 6 * eyes.z);
-        Vector3f front = new Vector3f(my_pos.x - eyes.x, my_pos.y - eyes.y + 3, my_pos.z - eyes.z);
-        if (setFollowCam) {
-            game.getCamera().setLocation(back);
-            game.getCamera().lookAt(front, Vector3f.UNIT_Y);
-        }
-        System.out.println(current_point + "point ");
+       //System.out.println(alive);
+        if (alive) {
 
-        // If the car enters a water pulse
-        if (game.getBox1().contains(vehicle_control.getPhysicsLocation()) || 
-                game.getBox2().contains(vehicle_control.getPhysicsLocation()) || 
-                game.getBox3().contains(vehicle_control.getPhysicsLocation())) {
-            
-            vehicle_control.applyCentralForce(new Vector3f(0, 4000, 0));
-        }
+// game.getCamera().lookAt(node_kart.getWorldTranslation(), Vector3f.UNIT_Y);
+            // System.out.println(node_kart.getWorldTranslation());
+            Vector3f my_pos = vehicle_control.getPhysicsLocation();
+            Vector3f eyes = vehicle_control.getPhysicsRotation().getRotationColumn(2).normalize();
+            Vector3f eyesNegado = eyes.mult(-1);
+            Vector3f back = new Vector3f(my_pos.x + 3 * eyes.x, my_pos.y + 3 * eyes.y + 3, my_pos.z + 6 * eyes.z);
+            Vector3f front = new Vector3f(my_pos.x - eyes.x, my_pos.y - eyes.y + 3, my_pos.z - eyes.z);
+            if (setFollowCam) {
+                game.getCamera().setLocation(back);
+                game.getCamera().lookAt(front, Vector3f.UNIT_Y);
+            }
+            //   System.out.println(current_point + "point ");
 
-        Vector3f next_point = game.getSphereList().get(current_point);
-        Vector3f dir = next_point.subtract(my_pos);
+            // If the car enters a water pulse
+            if (game.getBox1().contains(vehicle_control.getPhysicsLocation())
+                    || game.getBox2().contains(vehicle_control.getPhysicsLocation())
+                    || game.getBox3().contains(vehicle_control.getPhysicsLocation())) {
 
-        System.out.println("eyesNegado: " + Math.acos(dir.normalize().dot(eyesNegado)));
+                vehicle_control.applyCentralForce(new Vector3f(0, 4000, 0));
+            }
 
-        if (Math.acos(dir.normalize().dot(eyesNegado)) > 0.1 || Math.acos(dir.dot(eyesNegado)) < -0.1) {
-            // float steerAngle = (float) Math.acos(dir.normalize().dot(eyesNegado)) * MAX_STEER_ANGLE;
-            float steerAngle = dir.normalize().cross(eyesNegado).y * -max_steer_angle;
-            vehicle_control.steer(steerAngle);
-            System.out.println("Algun mensajito: " + steerAngle / max_steer_angle);
-        } else {
-            System.out.println("Entra en el else");
-            vehicle_control.steer(0);
-        }
+            Vector3f next_point = game.getSphereList().get(current_point);
+            Vector3f dir = next_point.subtract(my_pos);
 
-        vehicle_control.accelerate(acceleration);
-        System.out.println("Distance to point " + current_point + ": " + dir.length());
-        // vehicle_control.accelerate(-400f);
+            //      System.out.println("eyesNegado: " + Math.acos(dir.normalize().dot(eyesNegado)));
+            if (Math.acos(dir.normalize().dot(eyesNegado)) > 0.1 || Math.acos(dir.dot(eyesNegado)) < -0.1) {
+                // float steerAngle = (float) Math.acos(dir.normalize().dot(eyesNegado)) * MAX_STEER_ANGLE;
+                float steerAngle = dir.normalize().cross(eyesNegado).y * -max_steer_angle;
+                vehicle_control.steer(steerAngle);
+                //      System.out.println("Algun mensajito: " + steerAngle / max_steer_angle);
+            } else {
+                //        System.out.println("Entra en el else");
+                vehicle_control.steer(0);
+            }
 
-        if (dir.length() < 8) {
-            time = System.currentTimeMillis();
-            current_point = (current_point + 1) % game.getSphereList().size();
-            System.out.println("current_point: " + current_point);
-        }
-        
-        if(isStuck())
-        {
-            System.out.println("ATASCADO");
-            game.setFitness(current_point);
+            vehicle_control.accelerate(acceleration);
+            //   System.out.println("Distance to point " + current_point + ": " + dir.length());
+            // vehicle_control.accelerate(-400f);
+
+            if (isStuck() || current_point + 1 == game.getSphereList().size()) {
+                alive = false;
+                // System.out.println("ATASCADO");
+                if (isStuck())
+                    game.setFitness(current_point);
+                else
+                    game.setFitness(current_point + 1/(System.currentTimeMillis() - time_executed));
+
 //            vehicle_control.setPhysicsLocation(pos);
 //            current_point = 0;
 //            vehicle_control.setPhysicsRotation(Matrix3f.IDENTITY);
 //            vehicle_control.clearForces();
 //            time = null;
-            
-        }
+            }
+
+            if (dir.length() < 8) {
+                time = System.currentTimeMillis();
+                current_point = (current_point + 1) % game.getSphereList().size();
+                //        System.out.println("current_point: " + current_point);
+            }
 //        
 //        if(vehicle_control.getPhysicsLocation().subtract(posAnterior) )
 
-        posAnterior = vehicle_control.getPhysicsLocation();
+            posAnterior = vehicle_control.getPhysicsLocation();
+        }
     }
-    
+
     private boolean isStuck() {
-        return time!=null && (System.currentTimeMillis() - time) > 10000;
+        return time != null && (System.currentTimeMillis() - time) > 10000;
     }
 
     public Node getNodeKart() {
@@ -296,6 +315,23 @@ public class Kart implements ActionListener {
         game.getPhysicalStates().getPhysicsSpace().add(vehicle_control);
     }
 
+    public void reset(float ac, float steer) {
+        vehicle_control.setPhysicsLocation(new Vector3f(-65, 5, 10));
+        vehicle_control.setPhysicsRotation(new Matrix3f());
+        vehicle_control.setLinearVelocity(Vector3f.ZERO);
+        vehicle_control.setAngularVelocity(Vector3f.ZERO);
+        vehicle_control.resetSuspension();
+        acceleration = -ac;
+        max_steer_angle = (float) Math.PI / steer;
+        //System.out.println("Reseteo de verdad?");
+        vehicle_control.clearForces();
+        current_point = 0;
+        time_executed = System.currentTimeMillis();
+        game.setCondicion(true);
+        time = System.currentTimeMillis();
+        alive = true;
+    }
+
     private void setupKeys() {
         game.getInputManager().addMapping("Lefts", new KeyTrigger(KeyInput.KEY_H));
         game.getInputManager().addMapping("Rights", new KeyTrigger(KeyInput.KEY_K));
@@ -308,7 +344,7 @@ public class Kart implements ActionListener {
         game.getInputManager().addListener(this, "Ups");
         game.getInputManager().addListener(this, "Downs");
         game.getInputManager().addListener(this, "Space");
-        game.getInputManager().addListener(this, "Reset"); 
+        game.getInputManager().addListener(this, "Reset");
     }
 
     @Override
@@ -359,7 +395,5 @@ public class Kart implements ActionListener {
     public VehicleControl getVehicleControl() {
         return vehicle_control;
     }
-    
-    
 
 }

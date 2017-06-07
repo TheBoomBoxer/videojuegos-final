@@ -14,11 +14,15 @@ import com.jme3.post.filters.LightScatteringFilter;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Spatial;
+import com.jme3.system.AppSettings;
 import com.jme3.texture.Texture2D;
 import com.jme3.util.SkyFactory;
 import com.jme3.water.WaterFilter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Semaphore;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This is the Main Class of your Game. You should only do initialization here.
@@ -37,7 +41,17 @@ public class Game extends SimpleApplication {
     private BoundingBox box_1, box_2, box_3;
     private double fitness;
     private float acceleration, max_steer_angle;
-    private Object o;
+    private Semaphore o;
+    private boolean condicion = true;
+
+    public void setAcceleration(float a) {
+        acceleration = a;
+    }
+
+    public void setSteerAngle(float s) {
+        max_steer_angle = s;
+    }
+
     public double getFitness() {
         return fitness;
     }
@@ -45,13 +59,27 @@ public class Game extends SimpleApplication {
     public void setFitness(double fitness) {
         this.fitness = fitness;
     }
-    
-    public Game(int accl, int maxstr, Object o) {
+
+    public Game(int accl, int maxstr, Semaphore o) {
         acceleration = accl;
         max_steer_angle = maxstr;
         this.o = o;
     }
-     
+
+    public void reset() {
+        
+        fitness = -1;
+      
+        std_kart.reset(acceleration, max_steer_angle);
+    }
+
+    public boolean isCondicion() {
+        return condicion;
+    }
+
+    public void setCondicion(boolean condicion) {
+        this.condicion = condicion;
+    }
 
     public static void main(String[] args) {
 //        Game app = new Game();
@@ -60,6 +88,7 @@ public class Game extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
+        setPauseOnLostFocus(false);
 //        flyCam.setMoveSpeed(10f);
         fitness = -1;
         sphere_list = new ArrayList<>();
@@ -72,13 +101,12 @@ public class Game extends SimpleApplication {
         createCircuit();
         createWater();
         createWaterPulses();
-        std_kart = new Kart(this, "Wii U - Mario Kart 8 - Standard Kart/Standard Kart.obj",new Vector3f(-65f, 0f, 10f), acceleration, max_steer_angle);
+        std_kart = new Kart(this, "Wii U - Mario Kart 8 - Standard Kart/Standard Kart.obj", new Vector3f(-65f, 0f, 10f), acceleration, max_steer_angle);
         std_kart.setSetFollowCam(true);
-        
+
         //std_kart2 = new Kart(this, "Wii U - Mario Kart 8 - Standard Kart/Standard Kart.obj",new Vector3f(-65, -2, 10));
         //cam.setLocation(std_kart.getVehicleControl().getPhysicsLocation().add(new Vector3f(0, 2, 0)));
         //cam.lookAt(std_kart.getVehicleControl().getPhysicsLocation(), Vector3f.UNIT_Y);
-
         rootNode.attachChild(SkyFactory.createSky(getAssetManager(), "Textures/Sky/Bright/BrightSky.dds", SkyFactory.EnvMapType.CubeMap));
     }
 
@@ -86,7 +114,7 @@ public class Game extends SimpleApplication {
         Spatial track = assetManager.loadModel("Wii U - Mario Kart 8 - GCN Dry Dry Desert/Dry Desert Waterless.obj");
         track.addLight(spot);
         track.setShadowMode(ShadowMode.Receive);
-        
+
         Spatial spheres = assetManager.loadModel("Control Spheres/spheres.obj");
         rootNode.attachChild(spheres);
 
@@ -96,11 +124,11 @@ public class Game extends SimpleApplication {
         physics_track.setFriction(.5f);
         rootNode.attachChild(track);
     }
-    
+
     private void createWaterPulses() {
-        box_1 = new BoundingBox(new Vector3f(27.11419f, -25.55816f, 264.05148f), 14f, 5f, 14f);
-        box_2 = new BoundingBox(new Vector3f(-21.80325f, -25.55816f, 271.94205f), 14f, 5f, 14f);
-        box_3 = new BoundingBox(new Vector3f(-75.81601f, -25.55816f, 243.22943f), 14f, 5f, 14f);
+        box_1 = new BoundingBox(new Vector3f(7.96501f, -8.30052f, 72.21f), 3f, 3f, 3f);
+        box_2 = new BoundingBox(new Vector3f(-6.77355f, -8.30052f, 74.83452f), 3f, 3f, 3f);
+        box_3 = new BoundingBox(new Vector3f(-21.5f, -8.30052f, 67.1f), 3f, 3f, 3f);
     }
 
     private void createWater() {
@@ -130,24 +158,27 @@ public class Game extends SimpleApplication {
         water.setFoamTexture((Texture2D) assetManager.loadTexture("Common/MatDefs/Water/Textures/foam2.jpg"));
 
         water.setRefractionStrength(0.2f);
- 
+
         water.setRadius(40f);
         water.setCenter(new Vector3f(-5.40856f, 0f, 73.2708f));
         // water.setCenter(new Vector3f(58.43384f, -9.44549f, 65.74243f));
         water.setWaterHeight(-6.5f);
         System.out.println(water.getShapeType() + ", " + water.getRadius());
-         
+
         viewPort.addProcessor(fpp);
 
     }
 
     @Override
-    public synchronized void simpleUpdate(float tpf) {
+    public void simpleUpdate(float tpf) {
         // TODO: add update code
-        std_kart.update(tpf);
-        if (fitness >= 0) {
-            o.notify();
-            stop();
+        if (std_kart != null) {
+            std_kart.update(tpf);
+        }
+        if (fitness >= 0 && condicion) {
+            //System.out.println("Entro en release");
+            o.release();
+            condicion = false;
         }
         // std_kart2.update(tpf);
     }
@@ -156,7 +187,7 @@ public class Game extends SimpleApplication {
     public void simpleRender(RenderManager rm) {
         //TODO: add render code
     }
-    
+
     private void createCircuit2() {
         sphere_list.add(new Vector3f(-245.62790f, 5.30044f, -123.25159f));
         sphere_list.add(new Vector3f(-213.13654f, 5.30044f, -213.08435f));
@@ -186,10 +217,11 @@ public class Game extends SimpleApplication {
         sphere_list.add(new Vector3f(-255.95808f, 5.30044f, 237.24933f));
         sphere_list.add(new Vector3f(-268.59679f, 5.30044f, 184.38710f));
         sphere_list.add(new Vector3f(-225.15872f, 5.30044f, 127.73737f));
-        
+
     }
 
     private void createCircuit() {
+        sphere_list.add(new Vector3f(-65.04268f, -0.16430f, 2.03006f));
         sphere_list.add(new Vector3f(-66.42629f, -0.61749f, -36.41609f));
         sphere_list.add(new Vector3f(-56.63694f, 0.13945f, -62.27739f));
         sphere_list.add(new Vector3f(-36.80048f, 0.13945f, -68.92015f));
@@ -243,30 +275,20 @@ public class Game extends SimpleApplication {
     public List<Vector3f> getSphereList() {
         return sphere_list;
     }
-    
+
     public BoundingBox getBox1() {
         return box_1;
-        
-    }
-    
-    public BoundingBox getBox2() {
-        return box_2;
-        
-    }
-    
-    public BoundingBox getBox3() {
-        return box_3;
-        
-    }
-    
-    public void setAcceleration(float acc) {
-        acceleration = acc;
-    }
-    
-    public void setMaxSteerAngle(float maxstr) {
-        max_steer_angle = maxstr;
+
     }
 
-    
+    public BoundingBox getBox2() {
+        return box_2;
+
+    }
+
+    public BoundingBox getBox3() {
+        return box_3;
+
+    }
 
 }
