@@ -66,7 +66,7 @@ public class Kart implements ActionListener {
         Vector3f my_pos = vehicle_control.getPhysicsLocation();
         Vector3f eyes = vehicle_control.getPhysicsRotation().getRotationColumn(2).normalize();
         Vector3f eyesNegado = eyes.mult(-1);
-        Vector3f back = new Vector3f(my_pos.x + 3 * eyes.x, my_pos.y + 3 * eyes.y + 5, my_pos.z + 6 * eyes.z);
+        Vector3f back = new Vector3f(my_pos.x + 3 * eyes.x, my_pos.y + 3 * eyes.y + 3, my_pos.z + 6 * eyes.z);
         Vector3f front = new Vector3f(my_pos.x - eyes.x, my_pos.y - eyes.y + 3, my_pos.z - eyes.z);
         if (setFollowCam) {
             game.getCamera().setLocation(back);
@@ -97,18 +97,17 @@ public class Kart implements ActionListener {
             vehicle_control.steer(0);
         }
 
-        vehicle_control.accelerate(-500);
+        vehicle_control.accelerate(-150);
         System.out.println("Distance to point " + current_point + ": " + dir.length());
         // vehicle_control.accelerate(-400f);
 
-        if (dir.length() < 12) {
+        if (dir.length() < 8) {
             time = System.currentTimeMillis();
             current_point = (current_point + 1) % game.getSphereList().size();
             System.out.println("current_point: " + current_point);
         }
         
 //        if(time!=null && System.currentTimeMillis() - time > 5000 /* && (vehicle_control.getPhysicsLocation().subtract(posAnterior)).length() < 0.00001*/)
-//
 //        {
 //            System.out.println("ATASCADO");
 //            vehicle_control.setPhysicsLocation(pos);
@@ -117,9 +116,9 @@ public class Kart implements ActionListener {
 //            vehicle_control.clearForces();
 //            time =null;
 //        }
-        
+//        
 //        if(vehicle_control.getPhysicsLocation().subtract(posAnterior) )
-//        posAnterior = vehicle_control.getPhysicsLocation();
+        posAnterior = vehicle_control.getPhysicsLocation();
     }
 
     public Node getNodeKart() {

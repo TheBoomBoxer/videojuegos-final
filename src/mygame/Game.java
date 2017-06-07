@@ -51,11 +51,12 @@ public class Game extends SimpleApplication {
         rootNode.addLight(spot);
         createTrack();
         // createKart();
-        createCircuit2();
+        createCircuit();
         createWater();
         createWaterPulses();
-        std_kart = new Kart(this, "Wii U - Mario Kart 8 - Standard Kart/Standard Kart.obj",new Vector3f(-234.37828f, 10.56335f, 29.88176f));
+        std_kart = new Kart(this, "Wii U - Mario Kart 8 - Standard Kart/Standard Kart.obj",new Vector3f(-65f, 0f, 10f));
         std_kart.setSetFollowCam(true);
+        
         //std_kart2 = new Kart(this, "Wii U - Mario Kart 8 - Standard Kart/Standard Kart.obj",new Vector3f(-65, -2, 10));
         //cam.setLocation(std_kart.getVehicleControl().getPhysicsLocation().add(new Vector3f(0, 2, 0)));
         //cam.lookAt(std_kart.getVehicleControl().getPhysicsLocation(), Vector3f.UNIT_Y);
@@ -68,7 +69,7 @@ public class Game extends SimpleApplication {
         track.addLight(spot);
         track.setShadowMode(ShadowMode.Receive);
         
-        Spatial spheres = assetManager.loadModel("Control Spheres/spheres_big.obj");
+        Spatial spheres = assetManager.loadModel("Control Spheres/spheres.obj");
         rootNode.attachChild(spheres);
 
         physics_track = new RigidBodyControl(0f);
@@ -112,10 +113,10 @@ public class Game extends SimpleApplication {
 
         water.setRefractionStrength(0.2f);
  
-        water.setRadius(130f);
-        water.setCenter(new Vector3f(-25.38422f, 0f, 269.81128f));
+        water.setRadius(40f);
+        water.setCenter(new Vector3f(-5.40856f, 0f, 73.2708f));
         // water.setCenter(new Vector3f(58.43384f, -9.44549f, 65.74243f));
-        water.setWaterHeight(-21f);
+        water.setWaterHeight(-6.5f);
         System.out.println(water.getShapeType() + ", " + water.getRadius());
          
         viewPort.addProcessor(fpp);
