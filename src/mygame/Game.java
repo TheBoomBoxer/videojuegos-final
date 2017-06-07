@@ -35,15 +35,33 @@ public class Game extends SimpleApplication {
     private Kart std_kart;
     private Kart std_kart2;
     private BoundingBox box_1, box_2, box_3;
+    private double fitness;
+    private float acceleration, max_steer_angle;
+    private Object o;
+    public double getFitness() {
+        return fitness;
+    }
+
+    public void setFitness(double fitness) {
+        this.fitness = fitness;
+    }
+    
+    public Game(int accl, int maxstr, Object o) {
+        acceleration = accl;
+        max_steer_angle = maxstr;
+        this.o = o;
+    }
+     
 
     public static void main(String[] args) {
-        Game app = new Game();
-        app.start();
+//        Game app = new Game();
+//        app.start();
     }
 
     @Override
     public void simpleInitApp() {
-        flyCam.setMoveSpeed(10f);
+//        flyCam.setMoveSpeed(10f);
+        fitness = -1;
         sphere_list = new ArrayList<>();
         physical_states = new BulletAppState();
         stateManager.attach(physical_states);
@@ -54,7 +72,7 @@ public class Game extends SimpleApplication {
         createCircuit();
         createWater();
         createWaterPulses();
-        std_kart = new Kart(this, "Wii U - Mario Kart 8 - Standard Kart/Standard Kart.obj",new Vector3f(-65f, 0f, 10f));
+        std_kart = new Kart(this, "Wii U - Mario Kart 8 - Standard Kart/Standard Kart.obj",new Vector3f(-65f, 0f, 10f), acceleration, max_steer_angle);
         std_kart.setSetFollowCam(true);
         
         //std_kart2 = new Kart(this, "Wii U - Mario Kart 8 - Standard Kart/Standard Kart.obj",new Vector3f(-65, -2, 10));
@@ -124,10 +142,14 @@ public class Game extends SimpleApplication {
     }
 
     @Override
-    public void simpleUpdate(float tpf) {
-        //TODO: add update code
+    public synchronized void simpleUpdate(float tpf) {
+        // TODO: add update code
         std_kart.update(tpf);
-        //std_kart2.update(tpf);
+        if (fitness >= 0) {
+            o.notify();
+            stop();
+        }
+        // std_kart2.update(tpf);
     }
 
     @Override
@@ -236,5 +258,15 @@ public class Game extends SimpleApplication {
         return box_3;
         
     }
+    
+    public void setAcceleration(float acc) {
+        acceleration = acc;
+    }
+    
+    public void setMaxSteerAngle(float maxstr) {
+        max_steer_angle = maxstr;
+    }
+
+    
 
 }
