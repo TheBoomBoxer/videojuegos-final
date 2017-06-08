@@ -26,7 +26,7 @@ import com.jme3.scene.Spatial;
  */
 public class Kart implements ActionListener {
 
-    public static final float MAX_STEER_ANGLE = (float) Math.PI / 10f; // 45 degrees
+    public static final float MAX_STEER_ANGLE = (float) Math.PI / 6f; // 45 degrees
     private Node node_kart;
     private Game game;
     private Vector3f pos = new Vector3f();
@@ -97,7 +97,7 @@ public class Kart implements ActionListener {
             vehicle_control.steer(0);
         }
 
-        vehicle_control.accelerate(-150);
+        vehicle_control.accelerate(-291);
         System.out.println("Distance to point " + current_point + ": " + dir.length());
         // vehicle_control.accelerate(-400f);
 

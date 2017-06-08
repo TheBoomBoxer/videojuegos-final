@@ -70,7 +70,7 @@ public class Game extends SimpleApplication {
         track.setShadowMode(ShadowMode.Receive);
         
         Spatial spheres = assetManager.loadModel("Control Spheres/spheres.obj");
-        rootNode.attachChild(spheres);
+        // rootNode.attachChild(spheres);
 
         physics_track = new RigidBodyControl(0f);
         track.addControl(physics_track);
